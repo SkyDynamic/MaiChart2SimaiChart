@@ -62,11 +62,11 @@ public class CompileDatabase : ConsoleCommand
             {
                 a000Location = Program.DefaultPaths[0];
             }
-
-            string musicLocation = $"{a000Location}/music/";
-            string originSoundLocation = $"{a000Location}/SoundData";
-            string originImageLocation = $"{a000Location}/AssetBundleImages/jacket";
-            string originVideoLocation = $"{a000Location}/MovieData";
+            
+            var musicLocation = Path.Combine(a000Location, "music");
+            var originSoundLocation = Path.Combine(a000Location, "SoundData");
+            var originImageLocation = Path.Combine(a000Location,"AssetBundleImages","jacket");
+            var originVideoLocation = Path.Combine(a000Location, "MovieData");
 
             string[] musicFolders = Directory.GetDirectories(musicLocation);
 
@@ -148,7 +148,6 @@ public class CompileDatabase : ConsoleCommand
                         SimaiCompiler compiler;
                         if (trackInfo.InformationDict["Utage"] != "")
                         {
-                            //compiler = new SimaiCompiler(StrictDecimal, $"{track}/", $"{defaultCategorizedPath}/{trackNameSubstitute}_Utage", true);
                             compiler = new SimaiCompiler(StrictDecimal, Path.Combine(track),Path.Combine(defaultCategorizedPath,trackNameSubstitute + "_Utage"),true);
                             compiler.WriteOut(trackPath, true);
                         }
