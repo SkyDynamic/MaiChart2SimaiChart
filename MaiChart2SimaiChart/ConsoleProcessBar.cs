@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 
 namespace MaiChart2SimaiChart;
 
@@ -8,7 +6,7 @@ public class ConsoleProgressBar : IDisposable
 {
     private readonly int _total;
     private int _current;
-    private readonly object _lock = new();
+    private readonly Lock _lock = new();
     private readonly TextWriter _originalOut;
     private readonly InterceptingTextWriter _interceptingWriter;
     private bool _disposed;
@@ -190,7 +188,7 @@ public class ConsoleProgressBar : IDisposable
             Console.SetOut(_originalOut);
 
             // 释放拦截器
-            _interceptingWriter?.Dispose();
+            _interceptingWriter.Dispose();
 
             _disposed = true;
         }
