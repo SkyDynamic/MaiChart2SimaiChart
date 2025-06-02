@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MaiLib\MaiLib.csproj" />
+      <ProjectReference Include="..\XV2-Tools\Xv2CoreLib\Xv2CoreLib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ManyConsole" Version="2.0.1" />
+      <PackageReference Include="NAudio" Version="2.2.1" />
+      <PackageReference Include="NAudio.Lame" Version="2.1.0" />
+      <PackageReference Include="NAudio.Vorbis" Version="1.5.0" />
+      <PackageReference Include="Standart.Hash.xxHash" Version="4.0.5" />
+      <PackageReference Include="YAXLib" Version="2.15.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="AssetStudio">
+        <HintPath>Libs\AssetStudio.dll</HintPath>
+      </Reference>
+      <Reference Include="AssetStudioUtility">
+        <HintPath>Libs\AssetStudioUtility.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil">
+        <HintPath>Libs\Mono.Cecil.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Update="x64\Texture2DDecoderNative.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="x86\Texture2DDecoderNative.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Libs\" />
+    </ItemGroup>
+
+</Project>

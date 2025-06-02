@@ -1,0 +1,6 @@
+[submodule "MaiLib"]
+    path = MaiLib
+    url = https://github.com/Neskol/MaiLib.git
+[submodule "XV2-Tools"]
+	path = XV2-Tools
+	url = git@github.com:clansty/XV2-Tools.git
