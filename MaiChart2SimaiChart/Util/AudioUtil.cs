@@ -16,9 +16,9 @@ public static class AudioConvert
             hash = (await xxHash64.ComputeHashAsync(readStream)).ToString();
         }
 
-        var cachePath = Path.Combine(StaticSettings.tempPath, hash + ".wav");
+        var cachePath = Path.Combine(StaticSettings.TempPath, hash + ".wav");
         
-        if (!Directory.Exists(StaticSettings.tempPath)) Directory.CreateDirectory(StaticSettings.tempPath);
+        if (!Directory.Exists(StaticSettings.TempPath)) Directory.CreateDirectory(StaticSettings.TempPath);
         
         if (File.Exists(cachePath)) return cachePath;
 
