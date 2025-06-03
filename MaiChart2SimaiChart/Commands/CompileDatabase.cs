@@ -24,6 +24,8 @@ public class CompileDatabase : ConsoleCommand
     public string? Rotate { get; set; }
 
     public int? ShiftTick { get; set; }
+    
+    public int ThreadCount { get; set; }
 
     public CompileDatabase()
     {
@@ -49,6 +51,13 @@ public class CompileDatabase : ConsoleCommand
         HasOption("s|shift=", "Overall shift to the chart in unit of tick", tick => ShiftTick = int.Parse(tick));
         HasOption("d|decimal:", "Force output chart to have levels rated by decimal", _ => StrictDecimal = true);
         HasOption("n|number:", "Use musicID as folder name instead of sort name", _ => MusicIdFolderName = true);
+        HasOption("t|thread:", "Number of threads to use for compiling, default is 1", threadCount =>
+        {
+            if (int.TryParse(threadCount, out var count) && count > 0)
+                ThreadCount = count;
+            else
+                ThreadCount = 1;
+        });
     }
 
     public override int Run(string[] remainingArguments)
@@ -100,7 +109,7 @@ public class CompileDatabase : ConsoleCommand
             using (var progressBar = new ConsoleProgressBar(numberOfTracks))
             {
                 var threadPool = Array.Empty<Thread>();
-                for (var i = 0; i < 32; i++)
+                for (var i = 0; i < ThreadCount; i++)
                 {
                     var thread = new Thread(() =>
                     {
