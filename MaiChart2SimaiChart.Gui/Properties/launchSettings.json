@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MaiChart2SimaiChart.Gui (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MaiChart2SimaiChart.Gui (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

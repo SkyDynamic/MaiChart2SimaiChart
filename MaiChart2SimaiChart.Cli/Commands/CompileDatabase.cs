@@ -58,7 +58,7 @@ public class CompileDatabase : ConsoleCommand
                 CategorizeIndex, 
                 ThreadCount);
             
-            return CompileUtils.CompileDatabase(a000Location, Destination, option);
+            return CompileUtils.CompileDatabaseWithProgressBar(a000Location, Destination, option);
         }
         catch (Exception ex)
         {

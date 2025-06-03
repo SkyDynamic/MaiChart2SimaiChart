@@ -4,14 +4,14 @@ namespace MaiChart2SimaiChart;
 
 public class ConsoleProgressBar : IDisposable
 {
-    private readonly int _total;
+    private int _total;
     private int _current;
-    private readonly Lock _lock = new();
+    private readonly object _lock = new ();
     private readonly TextWriter _originalOut;
     private readonly InterceptingTextWriter _interceptingWriter;
     private bool _disposed;
 
-    public ConsoleProgressBar(int total)
+    public ConsoleProgressBar(int total = 100)
     {
         if (total <= 0)
             throw new ArgumentException("The total progress must be greater than 0", nameof(total));
@@ -27,6 +27,17 @@ public class ConsoleProgressBar : IDisposable
         // 初始化进度条显示
         DrawProgressBar();
     }
+
+    public void SetTotal(int value)
+    {
+        if (value <= 0)
+            throw new ArgumentException("The total progress must be greater than 0", nameof(value));
+
+        _total = value;
+        _current = Math.Min(_current, _total);
+
+        DrawProgressBar();
+    } 
 
     public void Update(int progress = 1)
     {

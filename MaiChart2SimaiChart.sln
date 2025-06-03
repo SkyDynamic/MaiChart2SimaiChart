@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiChart2SimaiChart", "MaiChart2SimaiChart\MaiChart2SimaiChart.csproj", "{CC8667E2-575B-490A-A310-AFD342487FF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiLib", "MaiLib\MaiLib.csproj", "{9E71835F-28A4-4288-A9B4-18EE4F0C1D5D}"
@@ -8,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB_Common", "XV2-Tools\LB_C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xv2CoreLib", "XV2-Tools\Xv2CoreLib\Xv2CoreLib.csproj", "{FDB88E51-0D73-47B9-A342-E574EC0BA583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiChart2SimaiChart.Cli", "MaiChart2SimaiChart.Cli\MaiChart2SimaiChart.Cli.csproj", "{E07779E0-08B5-4930-9C63-941A5F283015}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiChart2SimaiChart.Cli", "MaiChart2SimaiChart.Cli\MaiChart2SimaiChart.Cli.csproj", "{D59E1840-2204-4E6D-A38F-B284A85903BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiChart2SimaiChart.Gui", "MaiChart2SimaiChart.Gui\MaiChart2SimaiChart.Gui.csproj", "{EC371A75-3507-43C0-B988-642A16C912B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +37,21 @@ Global
 		{FDB88E51-0D73-47B9-A342-E574EC0BA583}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDB88E51-0D73-47B9-A342-E574EC0BA583}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDB88E51-0D73-47B9-A342-E574EC0BA583}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E07779E0-08B5-4930-9C63-941A5F283015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E07779E0-08B5-4930-9C63-941A5F283015}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E07779E0-08B5-4930-9C63-941A5F283015}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E07779E0-08B5-4930-9C63-941A5F283015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59E1840-2204-4E6D-A38F-B284A85903BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59E1840-2204-4E6D-A38F-B284A85903BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59E1840-2204-4E6D-A38F-B284A85903BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59E1840-2204-4E6D-A38F-B284A85903BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC371A75-3507-43C0-B988-642A16C912B2}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{EC371A75-3507-43C0-B988-642A16C912B2}.Debug|Any CPU.Build.0 = Debug|x64
+		{EC371A75-3507-43C0-B988-642A16C912B2}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{EC371A75-3507-43C0-B988-642A16C912B2}.Release|Any CPU.ActiveCfg = Release|x64
+		{EC371A75-3507-43C0-B988-642A16C912B2}.Release|Any CPU.Build.0 = Release|x64
+		{EC371A75-3507-43C0-B988-642A16C912B2}.Release|Any CPU.Deploy.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {739A0801-DD94-4AFC-90B9-22D85C9BA43B}
 	EndGlobalSection
 EndGlobal

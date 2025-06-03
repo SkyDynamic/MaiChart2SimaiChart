@@ -28,13 +28,32 @@ public class CompileUtils
         }
     }
     
-    public static int CompileDatabase(string a000Path, string? output)
+    public static int CompileDatabaseWithNothing(string a000Path, string? output)
     {
         return CompileDatabase(a000Path, output, new CompileDatabaseOption(false, false, 0, 1));
     }
     
-    public static int CompileDatabase(string a000Path, string? output, CompileDatabaseOption option)
+    public static int CompileDatabaseWithProgressBar(string a000Path, string? output, CompileDatabaseOption option)
+    {
+        var progressBar = new ConsoleProgressBar();
+        return CompileDatabase(a000Path, output, option, 
+            not => progressBar.SetTotal(not), 
+            upt => progressBar.Update(),
+            () => progressBar.Dispose()
+        );
+    }
+    
+    public static int CompileDatabase(
+        string a000Path, 
+        string? output, 
+        CompileDatabaseOption option,
+        Action<int>? onInit = null,
+        Action<int>? onUpdate = null,
+        Action? onFinish = null)
     { 
+        StaticSettings.CompiledTracks.Clear();
+        StaticSettings.CompiledChart.Clear();
+        
         if (a000Path.Equals(""))
         {
             a000Path = StaticSettings.DefaultPaths[0];
@@ -45,9 +64,9 @@ public class CompileUtils
         var originImageLocation = Path.Combine(a000Path, "AssetBundleImages", "jacket");
         var originVideoLocation = Path.Combine(a000Path, "MovieData");
 
-        string[] musicFolders = Directory.GetDirectories(musicLocation);
+        var musicFolders = Directory.GetDirectories(musicLocation);
         
-        string outputLocation = output ?? throw new NullReferenceException("Destination not specified");
+        var outputLocation = output ?? throw new NullReferenceException("Destination not specified");
         if (outputLocation.Equals(""))
         {
             outputLocation = StaticSettings.DefaultPaths[4];
@@ -69,14 +88,19 @@ public class CompileUtils
             Console.ReadKey();
         }
 
+        if (option.ThreadCount <= 0)
+        {
+            option.ThreadCount = 1;
+        }
+
         try
         {
             // 新建一个字典，bool、string，string是musicFolders中的文件夹名，bool是是否已经编译过
             var musicFloderDict = new Dictionary<string, bool>();
             foreach (var folder in musicFolders) musicFloderDict.TryAdd(folder, false);
 
-            int numberOfTracks = musicFolders.Length;
-            var progressBar = new ConsoleProgressBar(numberOfTracks);
+            var numberOfTracks = musicFolders.Length;
+            if (onInit !=null) onInit(numberOfTracks);
             try
             {
                 var threadPool = Array.Empty<Thread>();
@@ -96,7 +120,7 @@ public class CompileUtils
                             }
 
                             Compiler(folderToCompile, outputLocation, originSoundLocation, originImageLocation, option);
-                            progressBar.Update();
+                            if (onUpdate != null) onUpdate(musicFloderDict.Sum(x => x.Value ? 1 : 0));
                         }
                     });
                     thread.Start();
@@ -111,7 +135,7 @@ public class CompileUtils
             }
             finally
             {
-                progressBar.Dispose();
+                if (onFinish != null) onFinish();
             }
             
             Console.WriteLine("Total music compiled: {0}", StaticSettings.NumberTotalTrackCompiled);
@@ -139,7 +163,7 @@ public class CompileUtils
     {
         Console.WriteLine("Iterating on folder {0}", track);
         // Check the file status
-        string[] files = Directory.GetFiles(track);
+        var files = Directory.GetFiles(track);
         if (files.Length <= 1)
         {
             Console.WriteLine("Not enough files in the folder, skipping track: {0}", track);
@@ -149,7 +173,7 @@ public class CompileUtils
         {
             TrackInformation trackInfo = new XmlInformation($"{track}/");
             Console.WriteLine("There is Music.xml in {0}", track);
-            string shortID = StaticSettings.CompensateZero(trackInfo.TrackID).Substring(2);
+            var shortID = StaticSettings.CompensateZero(trackInfo.TrackID).Substring(2);
             Console.WriteLine($"Name: {trackInfo.TrackName}");
             Console.WriteLine($"ID: {trackInfo.TrackID}");
             Console.WriteLine($"Genre: {trackInfo.TrackGenre}");
@@ -160,7 +184,7 @@ public class CompileUtils
             ];
             var defaultCategorizedPath = Path.Combine(outputLocation, categorizeScheme[option.CategorizeIndex]);
 
-            string trackNameSubstitute = option.MusicIdFolderName
+            var trackNameSubstitute = option.MusicIdFolderName
                 ? trackInfo.TrackID
                 : $"{trackInfo.TrackID}_{trackInfo.TrackSortName}";
 
