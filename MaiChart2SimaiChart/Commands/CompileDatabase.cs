@@ -51,7 +51,7 @@ public class CompileDatabase : ConsoleCommand
         HasOption("s|shift=", "Overall shift to the chart in unit of tick", tick => ShiftTick = int.Parse(tick));
         HasOption("d|decimal:", "Force output chart to have levels rated by decimal", _ => StrictDecimal = true);
         HasOption("n|number:", "Use musicID as folder name instead of sort name", _ => MusicIdFolderName = true);
-        HasOption("t|thread:", "Number of threads to use for compiling, default is 1", threadCount =>
+        HasOption("t|thread=", "Number of threads to use for compiling, default is 1", threadCount =>
         {
             if (int.TryParse(threadCount, out var count) && count > 0)
                 ThreadCount = count;
@@ -135,97 +135,6 @@ public class CompileDatabase : ConsoleCommand
                 {
                     thread.Join();
                 }
-                /*
-                foreach (var track in musicFolders)
-                {
-                    Console.WriteLine("Iterating on folder {0}", track);
-                    // Check the file status
-                    string[] files = Directory.GetFiles(track);
-                    if (files.Length <= 1)
-                    {
-                        Console.WriteLine("Not enough files in the folder, skipping track: {0}", track);
-                        progressBar.Update();
-                        continue;
-                    }
-
-                    if (File.Exists(Path.Combine(track, "Music.xml")))
-                    {
-                        TrackInformation trackInfo = new XmlInformation($"{track}/");
-                        Console.WriteLine("There is Music.xml in {0}", track);
-                        string shortID = Program.CompensateZero(trackInfo.TrackID).Substring(2);
-                        Console.WriteLine($"Name: {trackInfo.TrackName}");
-                        Console.WriteLine($"ID: {trackInfo.TrackID}");
-                        Console.WriteLine($"Genre: {trackInfo.TrackGenre}");
-                        string[] categorizeScheme =
-                        [
-                            trackInfo.TrackGenre, trackInfo.TrackSymbolicLevel, trackInfo.TrackVersion,
-                            trackInfo.TrackComposer, trackInfo.TrackBPM, trackInfo.StandardDeluxePrefix, ""
-                        ];
-                        var defaultCategorizedPath = Path.Combine(outputLocation, categorizeScheme[CategorizeIndex]);
-
-                        string trackNameSubstitute = MusicIdFolderName
-                            ? trackInfo.TrackID
-                            : $"{trackInfo.TrackID}_{trackInfo.TrackSortName}";
-
-                        if (!Directory.Exists(defaultCategorizedPath))
-                        {
-                            Directory.CreateDirectory(defaultCategorizedPath);
-                            Console.WriteLine("Created folder: {0}", defaultCategorizedPath);
-                        }
-                        else Console.WriteLine("Already exist folder: {0}", defaultCategorizedPath);
-
-
-                        var trackPath = MusicIdFolderName
-                            ? Path.Combine(defaultCategorizedPath, trackNameSubstitute)
-                            : Path.Combine(defaultCategorizedPath,
-                                trackNameSubstitute + trackInfo.DXChartTrackPathSuffix);
-
-                        if (!Directory.Exists(trackPath))
-                        {
-                            Directory.CreateDirectory(trackPath);
-                            Console.WriteLine("Created song folder: {0}", trackPath);
-                        }
-                        else Console.WriteLine("Already exist song folder: {0}", trackPath);
-
-
-                        SimaiCompiler compiler;
-                        if (trackInfo.InformationDict["Utage"] != "")
-                        {
-                            compiler = new SimaiCompiler(StrictDecimal, Path.Combine(track),
-                                Path.Combine(defaultCategorizedPath, trackNameSubstitute + "_Utage"), true);
-                            compiler.WriteOut(trackPath, true);
-                        }
-                        else
-                        {
-                            compiler = new SimaiCompiler(StrictDecimal, Path.Combine(track), trackPath);
-                            compiler.WriteOut(trackPath, true);
-                            Program.CompiledChart.Add(compiler.GenerateOneLineSummary());
-                        }
-
-                        Console.WriteLine("Finished compiling maidata {0} to: {1}", trackInfo.TrackName,
-                            Path.Combine(trackPath, "maidata.txt"));
-
-                        Console.WriteLine($"Convert music {trackInfo.TrackName}");
-                        var wavPath = Task.Run(() =>
-                                AudioConvert.GetCachedWavPath(originSoundLocation, int.Parse(trackInfo.TrackID)))
-                            .GetAwaiter()
-                            .GetResult();
-                        AudioConvert.ConvertWavPathToMp3Stream(
-                            wavPath,
-                            new FileStream(Path.Combine(trackPath, "music.mp3"), FileMode.Create));
-
-                        Console.WriteLine($"Convert jacket {trackInfo.TrackName}");
-                        var img = ImageConvert.GetMusicJacketPngData(
-                            $"{originImageLocation}/ui_jacket_{int.Parse(trackInfo.TrackID) % 10000:000000}.ab");
-                        if (img is not null) File.WriteAllBytes(Path.Combine(trackPath, "bg.png"), img);
-                    }
-                    else
-                    {
-                        Console.WriteLine("There is no Music.xml in folder {0}", track);
-                    }
-
-                    progressBar.Update();
-                }*/
             }
             
             Console.WriteLine("Total music compiled: {0}", Program.NumberTotalTrackCompiled);
