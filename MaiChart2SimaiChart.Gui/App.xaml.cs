@@ -1,10 +1,12 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 
 namespace MaiChart2SimaiChart.Gui;
 
 public partial class App : Application
 {
     private Window? _window;
+    private AppWindow _appWindow;
     
     public App()
     {
@@ -20,5 +22,7 @@ public partial class App : Application
     {
         _window = new MainWindow();
         _window.Activate();
+
+        _appWindow = _window.AppWindow;
     }
 }

@@ -9,6 +9,8 @@ public sealed partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        
+        ExtendsContentIntoTitleBar = true;
     }
 
     private void Nv_OnSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

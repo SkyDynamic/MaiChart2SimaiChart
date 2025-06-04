@@ -58,7 +58,6 @@ public static class Audio
                     read.CopyTo(ms);
                     return ms.ToArray();
                 }
-
                 return ConvertFile(read, FileType.Adx, convertToType, loop, encrpytionKey);
             case ".at9":
                 return ConvertFile(read, FileType.Atrac9, convertToType, loop, encrpytionKey);

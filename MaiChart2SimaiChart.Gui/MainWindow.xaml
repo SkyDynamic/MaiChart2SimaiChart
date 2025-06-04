@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="MaiChart2SimaiChart.Gui">
+    Title="MaiChart2SimaiChart">
 
     <Window.SystemBackdrop>
         <MicaBackdrop />
@@ -19,7 +19,8 @@
             Header=""
             SelectionChanged="Nv_OnSelectionChanged"
             Loaded="Nv_OnLoaded"
-            IsSettingsVisible="False">
+            IsSettingsVisible="False"
+            PaneTitle="MaiChart2SimaiChart">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Play" Content="Export Charts" Tag="Ex" />
             </NavigationView.MenuItems>

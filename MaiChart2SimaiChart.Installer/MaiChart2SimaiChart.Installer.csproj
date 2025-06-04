@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <PublishTrimmed>True</PublishTrimmed>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="..\MaiChart2SimaiChart.Gui\bin\x64\Release\net8.0-windows10.0.19041.0\win-x64\AppPackages\**\*.msix" LogicalName="$(AssemblyName).Resources.app.msix" />
+        <EmbeddedResource Include="..\MaiChart2SimaiChart.Gui\bin\x64\Release\net8.0-windows10.0.19041.0\win-x64\AppPackages\**\*.cer" LogicalName="$(AssemblyName).Resources.app.cer" />
+        <EmbeddedResource Remove="..\MaiChart2SimaiChart.Gui\bin\x64\Release\net8.0-windows10.0.19041.0\win-x64\AppPackages\**\Dependencies\**\*" />
+    </ItemGroup>
+</Project>

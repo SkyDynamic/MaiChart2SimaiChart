@@ -10,3 +10,5 @@ riderModule.iml
 .vsconfig
 
 BundleArtifacts
+*.csproj.user
+*.tmp

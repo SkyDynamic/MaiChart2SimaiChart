@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiChart2SimaiChart.Cli", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiChart2SimaiChart.Gui", "MaiChart2SimaiChart.Gui\MaiChart2SimaiChart.Gui.csproj", "{EC371A75-3507-43C0-B988-642A16C912B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaiChart2SimaiChart.Installer", "MaiChart2SimaiChart.Installer\MaiChart2SimaiChart.Installer.csproj", "{6AE15CE5-9EFE-4580-A540-7497A1220555}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{EC371A75-3507-43C0-B988-642A16C912B2}.Release|Any CPU.ActiveCfg = Release|x64
 		{EC371A75-3507-43C0-B988-642A16C912B2}.Release|Any CPU.Build.0 = Release|x64
 		{EC371A75-3507-43C0-B988-642A16C912B2}.Release|Any CPU.Deploy.0 = Release|x64
+		{6AE15CE5-9EFE-4580-A540-7497A1220555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE15CE5-9EFE-4580-A540-7497A1220555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE15CE5-9EFE-4580-A540-7497A1220555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE15CE5-9EFE-4580-A540-7497A1220555}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
