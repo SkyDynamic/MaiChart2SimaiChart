@@ -141,8 +141,8 @@ public sealed partial class ExportChartPage : Page
     private async void ExportButton_OnClick(object sender, RoutedEventArgs e)
     {
         ExportButton.IsEnabled = false;
-        var dialogTitle = "Confirm Export";
-        var dialogContent = "Check your arguments again: \n" +
+        var dialogTitle = TranslateUtil.Translate("ExportPage-ConfirmDialogTitle");
+        var dialogContent = TranslateUtil.Translate("ExportPage-ConfirmDialogContent") + " \n" +
                             $"A000 Location: {_a000Path}\n" +
                             $"Output Location: {_outputPath}\n" +
                             $"Strict Decimal: {_strictDecimal}\n" +
@@ -150,14 +150,25 @@ public sealed partial class ExportChartPage : Page
                             $"Categorize Method: {_trackCategorizeMethodSet[TrackCategorizeMethodComboBox.SelectedIndex]}\n" +
                             $"Thread Count: {ThreadsNumberComboBox.SelectedItem}";
 
-        var result = await DialogHelper.ConfirmDialog(dialogTitle, dialogContent, "Confirm", "Cancel", XamlRoot);
+        var result = await DialogHelper.ConfirmDialog(
+            dialogTitle, 
+            dialogContent, 
+            TranslateUtil.Translate("Confirm"), 
+            TranslateUtil.Translate("Cancel"),
+            XamlRoot
+            );
 
         switch (result)
         {
             case ContentDialogResult.Primary:
                 if (_a000Path == "" || _outputPath == "")
                 {
-                    DialogHelper.NotifyDialog("Warning", "Please choose a valid path.", "OK", XamlRoot);
+                    await DialogHelper.NotifyDialog(
+                        TranslateUtil.Translate("Warning"), 
+                        TranslateUtil.Translate("ExportPage-A0PathNullNotifyText"), 
+                        "OK", 
+                        XamlRoot
+                        );
                     ExportButton.IsEnabled = true;
                     return;
                 }
@@ -234,7 +245,9 @@ public sealed partial class ExportChartPage : Page
                             }
                         );
                         _exportThread = null;
-                        AppNotificationHelper.ShowNotification("Export Completed", "");
+                        AppNotificationHelper.ShowNotification(
+                            "ExportPage-ExportFinishNotify", 
+                            "");
                     }
                 }, cancellationToken);
                 break;
@@ -253,6 +266,8 @@ public sealed partial class ExportChartPage : Page
             ExportProgressPanel.Visibility = Visibility.Collapsed;
             ExportButton.IsEnabled = true;
         }
-        AppNotificationHelper.ShowNotification("Export Stopped", "Export stopped by user.");
+        AppNotificationHelper.ShowNotification(
+            TranslateUtil.Translate("ExportPage-StopExportNotifyTitle"), 
+            TranslateUtil.Translate("ExportPage-StopExportNotifyContent"));
     }
 }

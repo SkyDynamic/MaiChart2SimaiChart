@@ -17,9 +17,9 @@
         </Grid.RowDefinitions>
         <TextBlock
             x:Name="PageHeader"
+            x:Uid="ExportPage"
             Margin="36,24,36,0"
-            Style="{StaticResource TitleTextBlockStyle}"
-            Text="Export Charts" />
+            Style="{StaticResource TitleTextBlockStyle}" />
         <ScrollViewer 
             Grid.Row="1"
             VerticalScrollBarVisibility="Auto"
@@ -37,16 +37,15 @@
 
                     <TextBox 
                         x:Name="A000PathTextBox"
+                        x:Uid="ExportPage-A0Path"
                         Grid.Column="0"
-                        Header="MaimaiDX A000 Path" 
-                        PlaceholderText="Input the path" 
                         TextChanged="A000PathTextBox_OnTextChanged" 
                         MaxHeight="80"/>
 
                     <Button 
                         Grid.Column="1"
+                        x:Uid="ExportPage-ChooseFolder"
                         VerticalAlignment="Bottom"
-                        Content="Choose Folder"
                         Click="A000PathChooseFolderButton_OnClick" />
                 </Grid>
                 
@@ -58,43 +57,38 @@
 
                     <TextBox 
                         x:Name="OutputPathTextBox"
+                        x:Uid="ExportPage-Output"
                         Grid.Column="0"
-                        Header="Output Path" 
-                        PlaceholderText="Input the path" 
                         TextChanged="OutputPathTextBox_OnTextChanged" 
                         MaxHeight="80"/>
 
                     <Button 
                         Grid.Column="1"
+                        x:Uid="ExportPage-ChooseFolder"
                         VerticalAlignment="Bottom"
-                        Content="Choose Folder"
                         Click="OutputPathChooseFolderButton_OnClick" />
                 </Grid>
                 
                 <controls:SettingsCard
-                    Header="StrictDecimal"
-                    Description="Force output chart to have levels rated by decimal"
+                    x:Uid="ExportPage-StrictDecimal"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE799;}">
                     <ToggleSwitch IsOn="{x:Bind _strictDecimal}" />
                 </controls:SettingsCard>
                 
                 <controls:SettingsCard
-                    Header="Genre"
-                    Description="The preferred categorizing scheme"
+                    x:Uid="ExportPage-Genre"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE71C;}">
                     <ComboBox x:Name="TrackCategorizeMethodComboBox" ItemsSource="{x:Bind _trackCategorizeMethodSet}" SelectedIndex="0"/>
                 </controls:SettingsCard>
                 
                 <controls:SettingsCard
-                    Header="Number Folder Name Format"
-                    Description="Use musicID as folder name instead of sort name"
+                    x:Uid="ExportPage-NumberFolderNameFormat"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE8B7;}">
                     <ToggleSwitch IsOn="{x:Bind _number}" />
                 </controls:SettingsCard>
                 
                 <controls:SettingsCard
-                    Header="Export Threads"
-                    Description="Number of threads to use for compiling, default is 1"
+                    x:Uid="ExportPage-ExportThreads"
                     HeaderIcon="{ui:FontIcon Glyph=&#xEC4A;}">
                     <ComboBox x:Name="ThreadsNumberComboBox" ItemsSource="{x:Bind _supportThreadsNumber}" SelectedIndex="0"/>
                 </controls:SettingsCard>
@@ -107,7 +101,7 @@
                     </Grid.ColumnDefinitions>
                     <Button 
                         x:Name="ExportButton"
-                        Content="Click ME to Exports!" 
+                        x:Uid="ExportPage-ExportButton"
                         Height="40"
                         Click="ExportButton_OnClick"/>
                 </Grid>

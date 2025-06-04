@@ -19,7 +19,6 @@
             Header=""
             SelectionChanged="Nv_OnSelectionChanged"
             Loaded="Nv_OnLoaded"
-            IsSettingsVisible="False"
             PaneTitle="MaiChart2SimaiChart">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Play" Content="Export Charts" Tag="Ex" />

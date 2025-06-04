@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="MaiChart2SimaiChart.Gui.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MaiChart2SimaiChart.Gui.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style
+            x:Key="SettingsSectionHeaderTextBlockStyle"
+            BasedOn="{StaticResource BodyStrongTextBlockStyle}"
+            TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="Margin" Value="1,30,0,6" />
+            </Style.Setters>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            x:Name="PageHeader"
+            x:Uid="SettingsPage"
+            Margin="36,24,36,0"
+            Style="{StaticResource TitleTextBlockStyle}" />
+        <ScrollViewer 
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Disabled"
+            ZoomMode="Disabled">
+            <StackPanel 
+                Orientation="Vertical"
+                Spacing="16"
+                Margin="36,10,36,36">
+                <TextBlock 
+                    x:Uid="SettingsPageAppearance"
+                    Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />
+                <controls:SettingsCard
+                    x:Uid="SettingsPage-Theme"
+                    HeaderIcon="{ui:FontIcon Glyph=&#xE790;}">
+                    <ComboBox 
+                        x:Name="ThemeComboBox"
+                        SelectionChanged="SwitchTheme">
+                        <ComboBoxItem Content="Light" Tag="Light" />
+                        <ComboBoxItem Content="Dark" Tag="Dark" />
+                        <ComboBoxItem Content="Use system setting" Tag="Default" />
+                    </ComboBox>
+                </controls:SettingsCard>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

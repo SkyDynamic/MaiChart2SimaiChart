@@ -9,8 +9,6 @@ public sealed partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        
-        ExtendsContentIntoTitleBar = true;
     }
 
     private void Nv_OnSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -18,6 +16,8 @@ public sealed partial class MainWindow : Window
         var selectedItem = (NavigationViewItem)args.SelectedItem;
 
         if ((string)selectedItem.Tag == "Ex") contentFrame.Navigate(typeof(ExportChartPage));
+        
+        if (args.IsSettingsSelected) contentFrame.Navigate(typeof(SettingsPage));
     }
 
     private void Nv_OnLoaded(object sender, RoutedEventArgs e)
