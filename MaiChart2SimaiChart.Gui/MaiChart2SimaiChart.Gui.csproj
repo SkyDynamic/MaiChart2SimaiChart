@@ -22,6 +22,7 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="String\en-US\Resources.resw" />
+    <Content Include="String\zh-CN\Resources.resw" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,9 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaiChart2SimaiChart\MaiChart2SimaiChart.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="String\zh-CN\" />
   </ItemGroup>
 
   <!--
