@@ -121,7 +121,7 @@
     <value>导出谱面</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>提交</value>
+    <value>确定</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
@@ -172,13 +172,13 @@
     <value>导出线程</value>
   </data>
   <data name="ExportPage_ExportThreads.Description" xml:space="preserve">
-    <value>编译所需要的线程数，缺省值为1</value>
+    <value>编译所使用的线程数，默认为1</value>
   </data>
   <data name="ExportPage_ExportButton.Content" xml:space="preserve">
-    <value>单击这里导出</value>
+    <value>点我导出！</value>
   </data>
   <data name="ExportPage_A0PathNullNotifyText" xml:space="preserve">
-    <value>请选取一个有效的路径</value>
+    <value>请选取一个有效的路径。</value>
   </data>
   <data name="ExportPage_ExportFinishNotify" xml:space="preserve">
     <value>导出完成</value>
@@ -187,13 +187,13 @@
     <value>导出终止</value>
   </data>
   <data name="ExportPage_StopExportNotifyContent" xml:space="preserve">
-    <value>导出已被用户取消</value>
+    <value>导出已被用户取消。</value>
   </data>
   <data name="ExportPage_ConfirmDialogTitle" xml:space="preserve">
     <value>确认导出</value>
   </data>
   <data name="ExportPage_ConfirmDialogContent" xml:space="preserve">
-    <value>请再次检查一下你的参数</value>
+    <value>请再次检查一下你的参数：</value>
   </data>
   <data name="ExportPage_Theme.Header" xml:space="preserve">
     <value>应用程序主题</value>
