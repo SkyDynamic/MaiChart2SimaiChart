@@ -1,15 +1,20 @@
-﻿using Windows.ApplicationModel.Resources;
+﻿using System;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 
 namespace MaiChart2SimaiChart.Gui.Helpers;
 
 public static class TranslateUtil
 {
-    private static ResourceLoader _resourceLoader = ResourceLoader.GetForCurrentView();
+    private static ResourceLoader _resourceLoader = ResourceLoader.GetForViewIndependentUse();
     private const string LanguageSettingsKey = "AppLanguage";
     
     public static string Translate(string key)
     {
+        if (_resourceLoader == null)
+        {
+            throw new NullReferenceException("ResourceLoader is not initialized.");
+        }
         return _resourceLoader.GetString(key);
     }
     
