@@ -44,6 +44,9 @@
   <ItemGroup>
     <ProjectReference Include="..\MaiChart2SimaiChart\MaiChart2SimaiChart.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="String\zh-Hans\" />
+  </ItemGroup>
 
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
