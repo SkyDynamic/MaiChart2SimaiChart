@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,93 +118,93 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExportPage.Text" xml:space="preserve">
-    <value>Export  Charts</value>
+    <value>导出谱面</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
+    <value>提交</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Warning" xml:space="preserve">
-    <value>Warning</value>
+    <value>警告</value>
   </data>
   <data name="SettingsPage.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="SettingsPageAppearance.Text" xml:space="preserve">
-    <value>Appearance &amp; behavior</value>
+    <value>外观和行为</value>
   </data>
   <data name="ExportPage_A0Path.Header" xml:space="preserve">
-    <value>MaimaiDX A000 Path</value>
+    <value>MaimaiDX A000 路径</value>
   </data>
   <data name="ExportPage_A0Path.PlaceholderText" xml:space="preserve">
-    <value>Input the path</value>
+    <value>请键入路径</value>
   </data>
   <data name="ExportPage_ChooseFolder.Content" xml:space="preserve">
-    <value>Choose Folder</value>
+    <value>选择文件夹</value>
   </data>
   <data name="ExportPage_Output.Header" xml:space="preserve">
-    <value>Output Path</value>
+    <value>输出路径</value>
   </data>
   <data name="ExportPage_Output.PlaceholderText" xml:space="preserve">
-    <value>Input the path</value>
+    <value>输入路径</value>
   </data>
   <data name="ExportPage_StrictDecimal.Description" xml:space="preserve">
-    <value>Force output chart to have levels rated by decimal</value>
+    <value>使用精细化定数（例如13.9 15.0）</value>
   </data>
   <data name="ExportPage_StrictDecimal.Header" xml:space="preserve">
-    <value>StrictDecimal</value>
+    <value>使用更加具体的定数作为等级标签</value>
   </data>
   <data name="ExportPage_Genre.Header" xml:space="preserve">
-    <value>Genre</value>
+    <value>类型</value>
   </data>
   <data name="ExportPage_Genre.Description" xml:space="preserve">
-    <value>The preferred categorizing scheme</value>
+    <value>首选的分类方案</value>
   </data>
   <data name="ExportPage_NumberFolderNameFormat.Header" xml:space="preserve">
-    <value>Number Folder Name Format</value>
+    <value>数字文件夹名称格式</value>
   </data>
   <data name="ExportPage_NumberFolderNameFormat.Description" xml:space="preserve">
-    <value>Use musicID as folder name instead of sort name</value>
+    <value>使用musicID作为文件夹名称，而不是排序名称</value>
   </data>
   <data name="ExportPage_ExportThreads.Header" xml:space="preserve">
-    <value>Export Threads</value>
+    <value>导出线程</value>
   </data>
   <data name="ExportPage_ExportThreads.Description" xml:space="preserve">
-    <value>Number of threads to use for compiling, default is 1</value>
+    <value>编译所需要的线程数，缺省值为1</value>
   </data>
   <data name="ExportPage_ExportButton.Content" xml:space="preserve">
-    <value>Click ME to Exports!</value>
+    <value>单击这里导出</value>
   </data>
   <data name="ExportPage_A0PathNullNotifyText" xml:space="preserve">
-    <value>Please choose a valid path.</value>
+    <value>请选取一个有效的路径</value>
   </data>
   <data name="ExportPage_ExportFinishNotify" xml:space="preserve">
-    <value>Export Completed</value>
+    <value>导出完成</value>
   </data>
   <data name="ExportPage_StopExportNotifyTitle" xml:space="preserve">
-    <value>Export Stopped</value>
+    <value>导出终止</value>
   </data>
   <data name="ExportPage_StopExportNotifyContent" xml:space="preserve">
-    <value>Export stopped by user.</value>
+    <value>导出已被用户取消</value>
   </data>
   <data name="ExportPage_ConfirmDialogTitle" xml:space="preserve">
-    <value>Confirm Export</value>
+    <value>确认导出</value>
   </data>
   <data name="ExportPage_ConfirmDialogContent" xml:space="preserve">
-    <value>Check your arguments again: </value>
+    <value>请再次检查一下你的参数</value>
   </data>
   <data name="ExportPage_Theme.Header" xml:space="preserve">
-    <value>App Theme</value>
+    <value>应用程序主题</value>
   </data>
   <data name="ExportPage_Theme.Description" xml:space="preserve">
-    <value>Select witch app theme to display</value>
+    <value>选择要显示的应用程序主题</value>
   </data>
   <data name="ExportPage_StopButton.Content" xml:space="preserve">
-    <value>Stop Export</value>
+    <value>停止导出</value>
   </data>
   <data name="Nav_ExportPage.Content" xml:space="preserve">
-    <value>Export Charts</value>
+    <value>导出谱面文件</value>
   </data>
 </root>
