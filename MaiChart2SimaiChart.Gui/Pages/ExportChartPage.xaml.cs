@@ -141,8 +141,8 @@ public sealed partial class ExportChartPage : Page
     private async void ExportButton_OnClick(object sender, RoutedEventArgs e)
     {
         ExportButton.IsEnabled = false;
-        var dialogTitle = TranslateUtil.Translate("ExportPage-ConfirmDialogTitle");
-        var dialogContent = TranslateUtil.Translate("ExportPage-ConfirmDialogContent") + " \n" +
+        var dialogTitle = TranslateUtil.Translate("ExportPage_ConfirmDialogTitle");
+        var dialogContent = TranslateUtil.Translate("ExportPage_ConfirmDialogContent") + " \n" +
                             $"A000 Location: {_a000Path}\n" +
                             $"Output Location: {_outputPath}\n" +
                             $"Strict Decimal: {_strictDecimal}\n" +
@@ -165,7 +165,7 @@ public sealed partial class ExportChartPage : Page
                 {
                     await DialogHelper.NotifyDialog(
                         TranslateUtil.Translate("Warning"), 
-                        TranslateUtil.Translate("ExportPage-A0PathNullNotifyText"), 
+                        TranslateUtil.Translate("ExportPage_A0PathNullNotifyText"), 
                         "OK", 
                         XamlRoot
                         );
@@ -246,7 +246,7 @@ public sealed partial class ExportChartPage : Page
                         );
                         _exportThread = null;
                         AppNotificationHelper.ShowNotification(
-                            "ExportPage-ExportFinishNotify", 
+                            "ExportPage_ExportFinishNotify", 
                             "");
                     }
                 }, cancellationToken);
@@ -267,7 +267,7 @@ public sealed partial class ExportChartPage : Page
             ExportButton.IsEnabled = true;
         }
         AppNotificationHelper.ShowNotification(
-            TranslateUtil.Translate("ExportPage-StopExportNotifyTitle"), 
-            TranslateUtil.Translate("ExportPage-StopExportNotifyContent"));
+            TranslateUtil.Translate("ExportPage_StopExportNotifyTitle"), 
+            TranslateUtil.Translate("ExportPage_StopExportNotifyContent"));
     }
 }

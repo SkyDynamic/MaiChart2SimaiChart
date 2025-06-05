@@ -37,14 +37,14 @@
 
                     <TextBox 
                         x:Name="A000PathTextBox"
-                        x:Uid="ExportPage-A0Path"
+                        x:Uid="ExportPage_A0Path"
                         Grid.Column="0"
                         TextChanged="A000PathTextBox_OnTextChanged" 
                         MaxHeight="80"/>
 
                     <Button 
                         Grid.Column="1"
-                        x:Uid="ExportPage-ChooseFolder"
+                        x:Uid="ExportPage_ChooseFolder"
                         VerticalAlignment="Bottom"
                         Click="A000PathChooseFolderButton_OnClick" />
                 </Grid>
@@ -57,38 +57,38 @@
 
                     <TextBox 
                         x:Name="OutputPathTextBox"
-                        x:Uid="ExportPage-Output"
+                        x:Uid="ExportPage_Output"
                         Grid.Column="0"
                         TextChanged="OutputPathTextBox_OnTextChanged" 
                         MaxHeight="80"/>
 
                     <Button 
                         Grid.Column="1"
-                        x:Uid="ExportPage-ChooseFolder"
+                        x:Uid="ExportPage_ChooseFolder"
                         VerticalAlignment="Bottom"
                         Click="OutputPathChooseFolderButton_OnClick" />
                 </Grid>
                 
                 <controls:SettingsCard
-                    x:Uid="ExportPage-StrictDecimal"
+                    x:Uid="ExportPage_StrictDecimal"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE799;}">
                     <ToggleSwitch IsOn="{x:Bind _strictDecimal}" />
                 </controls:SettingsCard>
                 
                 <controls:SettingsCard
-                    x:Uid="ExportPage-Genre"
+                    x:Uid="ExportPage_Genre"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE71C;}">
                     <ComboBox x:Name="TrackCategorizeMethodComboBox" ItemsSource="{x:Bind _trackCategorizeMethodSet}" SelectedIndex="0"/>
                 </controls:SettingsCard>
                 
                 <controls:SettingsCard
-                    x:Uid="ExportPage-NumberFolderNameFormat"
+                    x:Uid="ExportPage_NumberFolderNameFormat"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE8B7;}">
                     <ToggleSwitch IsOn="{x:Bind _number}" />
                 </controls:SettingsCard>
                 
                 <controls:SettingsCard
-                    x:Uid="ExportPage-ExportThreads"
+                    x:Uid="ExportPage_ExportThreads"
                     HeaderIcon="{ui:FontIcon Glyph=&#xEC4A;}">
                     <ComboBox x:Name="ThreadsNumberComboBox" ItemsSource="{x:Bind _supportThreadsNumber}" SelectedIndex="0"/>
                 </controls:SettingsCard>
@@ -101,7 +101,7 @@
                     </Grid.ColumnDefinitions>
                     <Button 
                         x:Name="ExportButton"
-                        x:Uid="ExportPage-ExportButton"
+                        x:Uid="ExportPage_ExportButton"
                         Height="40"
                         Click="ExportButton_OnClick"/>
                 </Grid>
@@ -150,7 +150,7 @@
                             FontSize="12"/>
                     </Grid>
                     <Button 
-                        Content="Stop Export"
+                        x:Uid="ExportPage_StopButton"
                         HorizontalAlignment="Center"
                         Grid.Row="1"
                         Margin="0,10,0,0"

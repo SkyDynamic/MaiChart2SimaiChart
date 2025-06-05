@@ -7,6 +7,8 @@ public class CompileUtils
     public const int Success = 0;
     public const int Failed = 2;
     
+    private static readonly object _sharedResourceLock = new();
+
     public class CompileDatabaseOption
     {
         public bool StrictDecimal { get; set; }
@@ -15,11 +17,11 @@ public class CompileUtils
         public int ThreadCount { get; set; }
 
         public CompileDatabaseOption(
-            bool strictDecimal, 
-            bool musicIdFolderName, 
-            int categorizeIndex, 
+            bool strictDecimal,
+            bool musicIdFolderName,
+            int categorizeIndex,
             int threadCount
-            )
+        )
         {
             StrictDecimal = strictDecimal;
             MusicIdFolderName = musicIdFolderName;
@@ -32,28 +34,28 @@ public class CompileUtils
     {
         return CompileDatabase(a000Path, output, new CompileDatabaseOption(false, false, 0, 1));
     }
-    
+
     public static int CompileDatabaseWithProgressBar(string a000Path, string? output, CompileDatabaseOption option)
     {
         var progressBar = new ConsoleProgressBar();
-        return CompileDatabase(a000Path, output, option, 
-            not => progressBar.SetTotal(not), 
+        return CompileDatabase(a000Path, output, option,
+            not => progressBar.SetTotal(not),
             upt => progressBar.Update(),
             () => progressBar.Dispose()
         );
     }
-    
+
     public static int CompileDatabase(
-        string a000Path, 
-        string? output, 
+        string a000Path,
+        string? output,
         CompileDatabaseOption option,
         Action<int>? onInit = null,
         Action<int>? onUpdate = null,
         Action? onFinish = null)
-    { 
+    {
         StaticSettings.CompiledTracks.Clear();
         StaticSettings.CompiledChart.Clear();
-        
+
         if (a000Path.Equals(""))
         {
             a000Path = StaticSettings.DefaultPaths[0];
@@ -65,13 +67,13 @@ public class CompileUtils
         var originVideoLocation = Path.Combine(a000Path, "MovieData");
 
         var musicFolders = Directory.GetDirectories(musicLocation);
-        
+
         var outputLocation = output ?? throw new NullReferenceException("Destination not specified");
         if (outputLocation.Equals(""))
         {
             outputLocation = StaticSettings.DefaultPaths[4];
         }
-        
+
         try
         {
             if (0 <= option.CategorizeIndex && option.CategorizeIndex < StaticSettings.TrackCategorizeMethodSet.Length)
@@ -95,12 +97,11 @@ public class CompileUtils
 
         try
         {
-            // 新建一个字典，bool、string，string是musicFolders中的文件夹名，bool是是否已经编译过
             var musicFloderDict = new Dictionary<string, bool>();
             foreach (var folder in musicFolders) musicFloderDict.TryAdd(folder, false);
 
             var numberOfTracks = musicFolders.Length;
-            if (onInit !=null) onInit(numberOfTracks);
+            if (onInit != null) onInit(numberOfTracks);
             try
             {
                 var threadPool = Array.Empty<Thread>();
@@ -137,7 +138,7 @@ public class CompileUtils
             {
                 if (onFinish != null) onFinish();
             }
-            
+
             Console.WriteLine("Total music compiled: {0}", StaticSettings.NumberTotalTrackCompiled);
             int index = 1;
             foreach (KeyValuePair<int, string> pair in StaticSettings.CompiledTracks)
@@ -147,101 +148,125 @@ public class CompileUtils
             }
 
             return Success;
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
+            Console.WriteLine("An error occurred during compilation: " + ex.Message);
             return Failed;
         }
+        finally
+        {
+            StaticSettings.CleanTempCache();
+        }
     }
-    
+
     private static void Compiler(
-        string track, 
-        string outputLocation, 
-        string originSoundLocation, 
+        string track,
+        string outputLocation,
+        string originSoundLocation,
         string originImageLocation,
         CompileDatabaseOption option
-        )
+    )
     {
         Console.WriteLine("Iterating on folder {0}", track);
-        // Check the file status
         var files = Directory.GetFiles(track);
         if (files.Length <= 1)
         {
             Console.WriteLine("Not enough files in the folder, skipping track: {0}", track);
+            return;
         }
 
-        if (File.Exists(Path.Combine(track, "Music.xml")))
+        if (!File.Exists(Path.Combine(track, "Music.xml")))
         {
-            TrackInformation trackInfo = new XmlInformation($"{track}/");
-            Console.WriteLine("There is Music.xml in {0}", track);
-            var shortID = StaticSettings.CompensateZero(trackInfo.TrackID).Substring(2);
-            Console.WriteLine($"Name: {trackInfo.TrackName}");
-            Console.WriteLine($"ID: {trackInfo.TrackID}");
-            Console.WriteLine($"Genre: {trackInfo.TrackGenre}");
-            string[] categorizeScheme =
-            [
-                trackInfo.TrackGenre, trackInfo.TrackSymbolicLevel, trackInfo.TrackVersion,
-                trackInfo.TrackComposer, trackInfo.TrackBPM, trackInfo.StandardDeluxePrefix, ""
-            ];
-            var defaultCategorizedPath = Path.Combine(outputLocation, categorizeScheme[option.CategorizeIndex]);
+            Console.WriteLine("There is no Music.xml in folder {0}", track);
+            return;
+        }
 
-            var trackNameSubstitute = option.MusicIdFolderName
-                ? trackInfo.TrackID
-                : $"{trackInfo.TrackID}_{trackInfo.TrackSortName}";
+        TrackInformation trackInfo = new XmlInformation($"{track}/");
+        Console.WriteLine("There is Music.xml in {0}", track);
+        var shortID = StaticSettings.CompensateZero(trackInfo.TrackID).Substring(2);
+        Console.WriteLine($"Name: {trackInfo.TrackName}");
+        Console.WriteLine($"ID: {trackInfo.TrackID}");
+        Console.WriteLine($"Genre: {trackInfo.TrackGenre}");
 
-            if (!Directory.Exists(defaultCategorizedPath))
-            {
-                Directory.CreateDirectory(defaultCategorizedPath);
-                Console.WriteLine("Created folder: {0}", defaultCategorizedPath);
-            }
-            else Console.WriteLine("Already exist folder: {0}", defaultCategorizedPath);
+        string[] categorizeScheme =
+        [
+            trackInfo.TrackGenre, trackInfo.TrackSymbolicLevel, trackInfo.TrackVersion,
+            trackInfo.TrackComposer, trackInfo.TrackBPM, trackInfo.StandardDeluxePrefix, ""
+        ];
 
+        var defaultCategorizedPath = Path.Combine(outputLocation, categorizeScheme[option.CategorizeIndex]);
 
-            var trackPath = option.MusicIdFolderName
-                ? Path.Combine(defaultCategorizedPath, trackNameSubstitute)
-                : Path.Combine(defaultCategorizedPath, trackNameSubstitute + trackInfo.DXChartTrackPathSuffix);
+        var trackNameSubstitute = option.MusicIdFolderName
+            ? trackInfo.TrackID
+            : $"{trackInfo.TrackID}_{trackInfo.TrackSortName}";
 
-            if (!Directory.Exists(trackPath))
-            {
-                Directory.CreateDirectory(trackPath);
-                Console.WriteLine("Created song folder: {0}", trackPath);
-            }
-            else Console.WriteLine("Already exist song folder: {0}", trackPath);
-
-
-            SimaiCompiler compiler;
-            if (trackInfo.InformationDict["Utage"] != "")
-            {
-                compiler = new SimaiCompiler(option.StrictDecimal, Path.Combine(track),
-                    Path.Combine(defaultCategorizedPath, trackNameSubstitute + "_Utage"), true);
-                compiler.WriteOut(trackPath, true);
-            }
-            else
-            {
-                compiler = new SimaiCompiler(option.StrictDecimal, Path.Combine(track), trackPath);
-                compiler.WriteOut(trackPath, true);
-                StaticSettings.CompiledChart.Add(compiler.GenerateOneLineSummary());
-            }
-
-            Console.WriteLine("Finished compiling maidata {0} to: {1}", trackInfo.TrackName,
-                Path.Combine(trackPath, "maidata.txt"));
-
-            Console.WriteLine($"Convert music {trackInfo.TrackName}");
-            var wavPath = Task.Run(() =>
-                    AudioConvert.GetCachedWavPath(originSoundLocation, int.Parse(trackInfo.TrackID)))
-                .GetAwaiter()
-                .GetResult();
-            AudioConvert.ConvertWavPathToMp3Stream(
-                wavPath,
-                new FileStream(Path.Combine(trackPath, "music.mp3"), FileMode.Create));
-
-            Console.WriteLine($"Convert jacket {trackInfo.TrackName}");
-            var img = ImageConvert.GetMusicJacketPngData(
-                $"{originImageLocation}/ui_jacket_{int.Parse(trackInfo.TrackID) % 10000:000000}.ab");
-            if (img is not null) File.WriteAllBytes(Path.Combine(trackPath, "bg.png"), img);
+        if (!Directory.Exists(defaultCategorizedPath))
+        {
+            Directory.CreateDirectory(defaultCategorizedPath);
+            Console.WriteLine("Created folder: {0}", defaultCategorizedPath);
         }
         else
         {
-            Console.WriteLine("There is no Music.xml in folder {0}", track);
+            Console.WriteLine("Already exist folder: {0}", defaultCategorizedPath);
         }
+
+        var trackPath = option.MusicIdFolderName
+            ? Path.Combine(defaultCategorizedPath, trackNameSubstitute)
+            : Path.Combine(defaultCategorizedPath, trackNameSubstitute + trackInfo.DXChartTrackPathSuffix);
+
+        if (!Directory.Exists(trackPath))
+        {
+            Directory.CreateDirectory(trackPath);
+            Console.WriteLine("Created song folder: {0}", trackPath);
+        }
+        else
+        {
+            Console.WriteLine("Already exist song folder: {0}", trackPath);
+        }
+
+        SimaiCompiler compiler;
+        if (trackInfo.InformationDict["Utage"] != "")
+        {
+            compiler = new SimaiCompiler(option.StrictDecimal, Path.Combine(track),
+                Path.Combine(defaultCategorizedPath, trackNameSubstitute + "_Utage"), true);
+            compiler.WriteOut(trackPath, true);
+        }
+        else
+        {
+            compiler = new SimaiCompiler(option.StrictDecimal, Path.Combine(track), trackPath);
+            compiler.WriteOut(trackPath, true);
+            StaticSettings.CompiledChart.Add(compiler.GenerateOneLineSummary());
+        }
+
+        Console.WriteLine("Finished compiling maidata {0} to: {1}", trackInfo.TrackName,
+            Path.Combine(trackPath, "maidata.txt"));
+
+        Console.WriteLine($"Convert music {trackInfo.TrackName}");
+        string wavPath;
+        
+        lock (_sharedResourceLock)
+        {
+            wavPath = Task.Run(() =>
+                    AudioConvert.GetCachedWavPath(originSoundLocation, int.Parse(trackInfo.TrackID)))
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        AudioConvert.ConvertWavPathToMp3Stream(
+            wavPath,
+            new FileStream(Path.Combine(trackPath, "music.mp3"), FileMode.Create));
+
+        Console.WriteLine($"Convert jacket {trackInfo.TrackName}");
+        byte[]? img;
+
+        lock (_sharedResourceLock)
+        {
+            img = ImageConvert.GetMusicJacketPngData(
+                $"{originImageLocation}/ui_jacket_{int.Parse(trackInfo.TrackID) % 10000:000000}.ab");
+        }
+
+        if (img is not null)
+            File.WriteAllBytes(Path.Combine(trackPath, "bg.png"), img);
     }
 }
