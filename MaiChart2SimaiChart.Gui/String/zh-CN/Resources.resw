@@ -117,50 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ExportPage-A0Path.Header" xml:space="preserve">
-    <value>MaimaiDX A000 路径</value>
-  </data>
-  <data name="ExportPage-A0Path.PlaceholderText" xml:space="preserve">
-    <value>请键入路径</value>
-  </data>
-  <data name="ExportPage-ChooseFolder.Content" xml:space="preserve">
-    <value>选择文件夹</value>
-  </data>
-  <data name="ExportPage-Output.Header" xml:space="preserve">
-    <value>输出路径</value>
-  </data>
-  <data name="ExportPage-Output.PlaceholderText" xml:space="preserve">
-    <value>输入路径</value>
-  </data>
-  <data name="ExportPage-StrictDecimal.Description" xml:space="preserve">
-    <value>严格浮点值</value>
-  </data>
-  <data name="ExportPage-StrictDecimal.Header" xml:space="preserve">
-    <value>强制以十进制表示谱面等级</value>
-  </data>
   <data name="ExportPage.Text" xml:space="preserve">
     <value>导出谱面</value>
-  </data>
-  <data name="ExportPage-Genre.Header" xml:space="preserve">
-    <value>类型</value>
-  </data>
-  <data name="ExportPage-Genre.Description" xml:space="preserve">
-    <value>首选的分类方案</value>
-  </data>
-  <data name="ExportPage-NumberFolderNameFormat.Header" xml:space="preserve">
-    <value>号码文件夹名称格式</value>
-  </data>
-  <data name="ExportPage-NumberFolderNameFormat.Description" xml:space="preserve">
-    <value>使用musicID作为文件夹名称，而不是排序名称</value>
-  </data>
-  <data name="ExportPage-ExportThreads.Header" xml:space="preserve">
-    <value>导出线程</value>
-  </data>
-  <data name="ExportPage-ExportThreads.Description" xml:space="preserve">
-    <value>编译所需要的线程数，缺省值为1</value>
-  </data>
-  <data name="ExportPage-ExportButton.Content" xml:space="preserve">
-    <value>单击这里导出</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>提交</value>
@@ -171,34 +129,82 @@
   <data name="Warning" xml:space="preserve">
     <value>警告</value>
   </data>
-  <data name="ExportPage-A0PathNullNotifyText" xml:space="preserve">
-    <value>请选取一个有效的路径</value>
-  </data>
-  <data name="ExportPage-ExportFinishNotify" xml:space="preserve">
-    <value>导出完毕</value>
-  </data>
-  <data name="ExportPage-StopExportNotifyTitle" xml:space="preserve">
-    <value>导出遭终止</value>
-  </data>
-  <data name="ExportPage-StopExportNotifyContent" xml:space="preserve">
-    <value>导出已被用户终止</value>
-  </data>
-  <data name="ExportPage-ConfirmDialogTitle" xml:space="preserve">
-    <value>确定导出</value>
-  </data>
-  <data name="ExportPage-ConfirmDialogContent" xml:space="preserve">
-    <value>请再次检查一下参数</value>
-  </data>
   <data name="SettingsPage.Text" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="SettingsPage-Theme.Header" xml:space="preserve">
-    <value>应用程序主题</value>
-  </data>
-  <data name="SettingsPage-Theme.Description" xml:space="preserve">
-    <value>选择要显示的应用程序主题</value>
-  </data>
   <data name="SettingsPageAppearance.Text" xml:space="preserve">
     <value>外观和行为</value>
+  </data>
+  <data name="ExportPage_A0Path.Header" xml:space="preserve">
+    <value>MaimaiDX A000 路径</value>
+  </data>
+  <data name="ExportPage_A0Path.PlaceholderText" xml:space="preserve">
+    <value>请键入路径</value>
+  </data>
+  <data name="ExportPage_ChooseFolder.Content" xml:space="preserve">
+    <value>选择文件夹</value>
+  </data>
+  <data name="ExportPage_Output.Header" xml:space="preserve">
+    <value>输出路径</value>
+  </data>
+  <data name="ExportPage_Output.PlaceholderText" xml:space="preserve">
+    <value>输入路径</value>
+  </data>
+  <data name="ExportPage_StrictDecimal.Description" xml:space="preserve">
+    <value>强制输出谱面文件到以等级（小数）分类的文件夹中</value>
+  </data>
+  <data name="ExportPage_StrictDecimal.Header" xml:space="preserve">
+    <value>严格小数</value>
+  </data>
+  <data name="ExportPage_Genre.Header" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="ExportPage_Genre.Description" xml:space="preserve">
+    <value>首选的分类方案</value>
+  </data>
+  <data name="ExportPage_NumberFolderNameFormat.Header" xml:space="preserve">
+    <value>数字文件夹名称格式</value>
+  </data>
+  <data name="ExportPage_NumberFolderNameFormat.Description" xml:space="preserve">
+    <value>使用musicID作为文件夹名称，而不是排序名称</value>
+  </data>
+  <data name="ExportPage_ExportThreads.Header" xml:space="preserve">
+    <value>导出线程</value>
+  </data>
+  <data name="ExportPage_ExportThreads.Description" xml:space="preserve">
+    <value>编译所需要的线程数，缺省值为1</value>
+  </data>
+  <data name="ExportPage_ExportButton.Content" xml:space="preserve">
+    <value>单击这里导出</value>
+  </data>
+  <data name="ExportPage_A0PathNullNotifyText" xml:space="preserve">
+    <value>请选取一个有效的路径</value>
+  </data>
+  <data name="ExportPage_ExportFinishNotify" xml:space="preserve">
+    <value>导出完成</value>
+  </data>
+  <data name="ExportPage_StopExportNotifyTitle" xml:space="preserve">
+    <value>导出终止</value>
+  </data>
+  <data name="ExportPage_StopExportNotifyContent" xml:space="preserve">
+    <value>导出已被用户取消</value>
+  </data>
+  <data name="ExportPage_ConfirmDialogTitle" xml:space="preserve">
+    <value>确认导出</value>
+  </data>
+  <data name="ExportPage_ConfirmDialogContent" xml:space="preserve">
+    <value>请再次检查一下你的参数</value>
+  </data>
+  <data name="ExportPage_Theme.Header" xml:space="preserve">
+    <value>应用程序主题</value>
+  </data>
+  <data name="ExportPage_Theme.Description" xml:space="preserve">
+    <value>选择要显示的应用程序主题</value>
+  </data>
+  <data name="ExportPage_StopButton.Content" xml:space="preserve">
+    <value>停止导出</value>
+  </data>
+  <data name="Nav_ExportPage.Content" xml:space="preserve">
+    <value>导出谱面文件</value>
   </data>
 </root>
