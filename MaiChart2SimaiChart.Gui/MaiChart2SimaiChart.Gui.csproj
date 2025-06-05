@@ -45,7 +45,7 @@
     <ProjectReference Include="..\MaiChart2SimaiChart\MaiChart2SimaiChart.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="String\zh-Hans\" />
+    <Folder Include="String\zh-CN\" />
   </ItemGroup>
 
   <!--

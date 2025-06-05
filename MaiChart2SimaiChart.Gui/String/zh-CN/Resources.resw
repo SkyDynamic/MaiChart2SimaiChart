@@ -136,7 +136,7 @@
     <value>严格浮点值</value>
   </data>
   <data name="ExportPage-StrictDecimal.Header" xml:space="preserve">
-    <value>强制输出图表以十进制表示等级</value>
+    <value>强制以十进制表示谱面等级</value>
   </data>
   <data name="ExportPage.Text" xml:space="preserve">
     <value>导出谱面</value>
