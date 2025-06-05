@@ -151,10 +151,10 @@
     <value>输入路径</value>
   </data>
   <data name="ExportPage_StrictDecimal.Description" xml:space="preserve">
-    <value>强制输出谱面文件到以等级（小数）分类的文件夹中</value>
+    <value>使用精细化定数（例如13.9 15.0）</value>
   </data>
   <data name="ExportPage_StrictDecimal.Header" xml:space="preserve">
-    <value>严格小数</value>
+    <value>使用更加具体的定数作为等级标签</value>
   </data>
   <data name="ExportPage_Genre.Header" xml:space="preserve">
     <value>类型</value>
