@@ -42,4 +42,19 @@ public static class StaticSettings
             return "Exception raised: " + ex.Message;
         }
     }
+
+    public static void CleanTempCache()
+    {
+        try
+        {
+            if (Directory.Exists(TempPath))
+            {
+                Directory.Delete(TempPath, true);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }

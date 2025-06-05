@@ -154,6 +154,10 @@ public class CompileUtils
             Console.WriteLine("An error occurred during compilation: " + ex.Message);
             return Failed;
         }
+        finally
+        {
+            StaticSettings.CleanTempCache();
+        }
     }
 
     private static void Compiler(
