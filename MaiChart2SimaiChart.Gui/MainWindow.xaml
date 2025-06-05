@@ -21,7 +21,7 @@
             Loaded="Nv_OnLoaded"
             PaneTitle="MaiChart2SimaiChart">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Play" Content="Export Charts" Tag="Ex" />
+                <NavigationViewItem Icon="Play" x:Uid="Nav_ExportPage" Tag="Ex" />
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame"/>
         </NavigationView>

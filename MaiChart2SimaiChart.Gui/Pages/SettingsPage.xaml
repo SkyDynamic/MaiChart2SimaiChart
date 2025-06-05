@@ -44,7 +44,7 @@
                     x:Uid="SettingsPageAppearance"
                     Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />
                 <controls:SettingsCard
-                    x:Uid="SettingsPage-Theme"
+                    x:Uid="ExportPage_Theme"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE790;}">
                     <ComboBox 
                         x:Name="ThemeComboBox"
