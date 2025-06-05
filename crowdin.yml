@@ -1,0 +1,3 @@
+files:
+  - source: /MaiChart2SimaiChart.Gui/String/en-US/Resources.resw
+    translation: /MaiChart2SimaiChart.Gui/String/%locale%/%original_file_name%
