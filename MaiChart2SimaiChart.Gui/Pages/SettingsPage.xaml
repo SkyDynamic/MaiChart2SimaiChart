@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Page
     x:Class="MaiChart2SimaiChart.Gui.Pages.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,7 +10,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:ui="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
         <Style
             x:Key="SettingsSectionHeaderTextBlockStyle"
@@ -31,27 +32,27 @@
             x:Uid="SettingsPage"
             Margin="36,24,36,0"
             Style="{StaticResource TitleTextBlockStyle}" />
-        <ScrollViewer 
+        <ScrollViewer
             Grid.Row="1"
             VerticalScrollBarVisibility="Auto"
             HorizontalScrollBarVisibility="Disabled"
             ZoomMode="Disabled">
-            <StackPanel 
+            <StackPanel
                 Orientation="Vertical"
                 Spacing="16"
                 Margin="36,10,36,36">
-                <TextBlock 
+                <TextBlock
                     x:Uid="SettingsPageAppearance"
                     Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />
                 <controls:SettingsCard
                     x:Uid="SettingsPage-Theme"
                     HeaderIcon="{ui:FontIcon Glyph=&#xE790;}">
-                    <ComboBox 
+                    <ComboBox
                         x:Name="ThemeComboBox"
                         SelectionChanged="SwitchTheme">
-                        <ComboBoxItem Content="Light" Tag="Light" />
-                        <ComboBoxItem Content="Dark" Tag="Dark" />
-                        <ComboBoxItem Content="Use system setting" Tag="Default" />
+                        <ComboBoxItem x:Uid="SettingsPage-ThemeLight"/>
+                        <ComboBoxItem x:Uid="SettingsPage-ThemeDark"/>
+                        <ComboBoxItem x:Uid="SettingsPage-ThemeDefault"/>
                     </ComboBox>
                 </controls:SettingsCard>
             </StackPanel>

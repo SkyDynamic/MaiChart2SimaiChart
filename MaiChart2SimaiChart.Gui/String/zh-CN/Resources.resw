@@ -1,64 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -118,96 +59,96 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExportPage-A0Path.Header" xml:space="preserve">
-    <value>MaimaiDX A000 Path</value>
+    <value>舞萌DX A000文件路径</value>
   </data>
   <data name="ExportPage-A0Path.PlaceholderText" xml:space="preserve">
-    <value>Input the path</value>
+    <value>输入路径</value>
   </data>
   <data name="ExportPage-ChooseFolder.Content" xml:space="preserve">
-    <value>Choose Folder</value>
+    <value>选择文件夹</value>
   </data>
   <data name="ExportPage-Output.Header" xml:space="preserve">
-    <value>Output Path</value>
+    <value>输出路径</value>
   </data>
   <data name="ExportPage-Output.PlaceholderText" xml:space="preserve">
-    <value>Input the path</value>
+    <value>输入路径</value>
   </data>
   <data name="ExportPage-StrictDecimal.Description" xml:space="preserve">
-    <value>StrictDecimal</value>
+    <value>高精度小数</value>
   </data>
   <data name="ExportPage-StrictDecimal.Header" xml:space="preserve">
-    <value>Force output chart to have levels rated by decimal</value>
+    <value>强制谱面输出使用小数</value>
   </data>
   <data name="ExportPage.Text" xml:space="preserve">
-    <value>Export Charts</value>
+    <value>导出谱面</value>
   </data>
   <data name="ExportPage-Genre.Header" xml:space="preserve">
-    <value>Genre</value>
+    <value>类型</value>
   </data>
   <data name="ExportPage-Genre.Description" xml:space="preserve">
-    <value>The preferred categorizing scheme</value>
+    <value>首选分类方案</value>
   </data>
   <data name="ExportPage-NumberFolderNameFormat.Header" xml:space="preserve">
-    <value>Number Folder Name Format</value>
+    <value>数字文件夹名格式</value>
   </data>
   <data name="ExportPage-NumberFolderNameFormat.Description" xml:space="preserve">
-    <value>Use musicID as folder name instead of sort name</value>
+    <value>使用音乐ID作为文件夹名称而非排序名称</value>
   </data>
   <data name="ExportPage-ExportThreads.Header" xml:space="preserve">
-    <value>Export Threads</value>
+    <value>导出线程</value>
   </data>
   <data name="ExportPage-ExportThreads.Description" xml:space="preserve">
-    <value>Number of threads to use for compiling, default is 1</value>
+    <value>用于导出的线程数，默认为1</value>
   </data>
   <data name="ExportPage-ExportButton.Content" xml:space="preserve">
-    <value>Click ME to Exports!</value>
+    <value>点我导出！</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
+    <value>确认</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Warning" xml:space="preserve">
-    <value>Warning</value>
+    <value>警告</value>
   </data>
   <data name="ExportPage-A0PathNullNotifyText" xml:space="preserve">
-    <value>Please choose a valid path.</value>
+    <value>请选择有效路径。</value>
   </data>
   <data name="ExportPage-ExportFinishNotify" xml:space="preserve">
-    <value>Export Completed</value>
+    <value>导出已完成</value>
   </data>
   <data name="ExportPage-StopExportNotifyTitle" xml:space="preserve">
-    <value>Export Stopped</value>
+    <value>导出已停止</value>
   </data>
   <data name="ExportPage-StopExportNotifyContent" xml:space="preserve">
-    <value>Export stopped by user.</value>
+    <value>导出被用户停止。</value>
   </data>
   <data name="ExportPage-ConfirmDialogTitle" xml:space="preserve">
-    <value>Confirm Export</value>
+    <value>确认导出</value>
   </data>
   <data name="ExportPage-ConfirmDialogContent" xml:space="preserve">
-    <value>Check your arguments again: </value>
+    <value>再次检查您的参数：</value>
   </data>
   <data name="SettingsPage.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="SettingsPage-Theme.Header" xml:space="preserve">
-    <value>App Theme</value>
+    <value>应用主题</value>
   </data>
   <data name="SettingsPage-Theme.Description" xml:space="preserve">
-    <value>Select witch app theme to display</value>
+    <value>选择要显示的应用主题</value>
   </data>
   <data name="SettingsPageAppearance.Text" xml:space="preserve">
-    <value>Appearance &amp; behavior</value>
+    <value>外观与行为</value>
   </data>
   <data name="SettingsPage-ThemeLight.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>浅色</value>
   </data>
   <data name="SettingsPage-ThemeDark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>深色</value>
   </data>
   <data name="SettingsPage-ThemeDefault.Content" xml:space="preserve">
-    <value>Use system setting</value>
+    <value>使用系统设置</value>
   </data>
 </root>
