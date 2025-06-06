@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ExportPage.Text" xml:space="preserve">
-    <value>导出谱面</value>
-  </data>
   <data name="Confirm" xml:space="preserve">
     <value>确定</value>
   </data>
@@ -128,9 +125,6 @@
   </data>
   <data name="Warning" xml:space="preserve">
     <value>警告</value>
-  </data>
-  <data name="SettingsPage.Text" xml:space="preserve">
-    <value>设置</value>
   </data>
   <data name="SettingsPageAppearance.Text" xml:space="preserve">
     <value>外观和行为</value>
@@ -175,7 +169,7 @@
     <value>编译所使用的线程数，默认为1</value>
   </data>
   <data name="ExportPage_ExportButton.Content" xml:space="preserve">
-    <value>点我导出！</value>
+    <value>单击这里导出</value>
   </data>
   <data name="ExportPage_A0PathNullNotifyText" xml:space="preserve">
     <value>请选取一个有效的路径。</value>
@@ -195,10 +189,10 @@
   <data name="ExportPage_ConfirmDialogContent" xml:space="preserve">
     <value>请再次检查一下你的参数：</value>
   </data>
-  <data name="ExportPage_Theme.Header" xml:space="preserve">
+  <data name="Settings_Theme.Header" xml:space="preserve">
     <value>应用程序主题</value>
   </data>
-  <data name="ExportPage_Theme.Description" xml:space="preserve">
+  <data name="Settings_Theme.Description" xml:space="preserve">
     <value>选择要显示的应用程序主题</value>
   </data>
   <data name="ExportPage_StopButton.Content" xml:space="preserve">
