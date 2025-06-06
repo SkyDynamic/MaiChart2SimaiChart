@@ -1,29 +1,32 @@
-using MaiChart2SimaiChart.Gui.Pages;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+using Windows.UI.ViewManagement;
+using MaiChart2SimaiChart.Gui.Helpers;
+using WinUIEx;
 
 namespace MaiChart2SimaiChart.Gui;
 
-public sealed partial class MainWindow : Window
+public sealed partial class MainWindow : WindowEx
 {
+    private Microsoft.UI.Dispatching.DispatcherQueue dispatcherQueue;
+    private UISettings settings;
+    
     public MainWindow()
     {
         InitializeComponent();
-    }
-
-    private void Nv_OnSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-    {
-        var selectedItem = (NavigationViewItem)args.SelectedItem;
-
-        if ((string)selectedItem.Tag == "Ex") contentFrame.Navigate(typeof(ExportChartPage));
         
-        if (args.IsSettingsSelected) contentFrame.Navigate(typeof(SettingsPage));
+        Content = null;
+        Title = "MaiChart2SimaiChart";
+        
+        dispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
+        
+        settings = new();
+        settings.ColorValuesChanged += Settings_ColorValuesChanged;
     }
-
-    private void Nv_OnLoaded(object sender, RoutedEventArgs e)
+    
+    private void Settings_ColorValuesChanged(UISettings sender, object args)
     {
-        nv.SelectedItem = nv.MenuItems[0];
-
-        contentFrame.Navigate(typeof(ExportChartPage));
+        dispatcherQueue.TryEnqueue(() =>
+        {
+            TitleBarHelper.ApplySystemThemeToCaptionButtons();
+        });
     }
 }

@@ -1,51 +1,79 @@
-﻿using MaiChart2SimaiChart.Gui.Pages;
-using Microsoft.UI.Windowing;
+﻿using System;
+using MaiChart2SimaiChart.Gui.Activation;
+using MaiChart2SimaiChart.Gui.Contracts.Services;
+using MaiChart2SimaiChart.Gui.View;
+using MaiChart2SimaiChart.Gui.Service;
+using MaiChart2SimaiChart.Gui.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+using WinUIEx;
 
 namespace MaiChart2SimaiChart.Gui;
 
 public partial class App : Application
 {
-    private Window? _window;
-    private AppWindow _appWindow;
+    public static WindowEx MainWindow
+    {
+        get;
+    } = new MainWindow();
+    
+    public static UIElement? AppTitlebar { get; set; }
+    
+    private IHost Host
+    {
+        get;
+    }
+    
+    public static T GetService<T>()
+        where T : class
+    {
+        if ((Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
+        {
+            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+        }
+
+        return service;
+    }
     
     public App()
     {
+        Host = Microsoft.Extensions.Hosting.Host
+            .CreateDefaultBuilder()
+            .UseContentRoot(AppContext.BaseDirectory)
+            .ConfigureServices((context, services) =>
+            {
+                // Default Activation Handler
+                services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
+                
+                // Service
+                services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
+                services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+                services.AddTransient<INavigationViewService, NavigationViewService>();
+                
+                services.AddSingleton<IActivationService, ActivationService>();
+                services.AddSingleton<IPageService, PageService>();
+                services.AddSingleton<INavigationService, NavigationService>();
+                
+                services.AddSingleton<ExportProgressService>();
+                
+                // View & ViewModels
+                services.AddSingleton<ExportChartViewModel>();
+                services.AddTransient<ExportChartPage>();
+                services.AddTransient<SettingsViewModel>();
+                services.AddTransient<SettingsPage>();
+                services.AddTransient<ShellViewModel>();
+                services.AddTransient<ShellPage>();
+            })
+            .Build();
+
         InitializeComponent();
     }
-
-    public Window GetWindow()
-    {
-        return _window;
-    }
-
-    public void SetTheme(string selectedTheme)
-    {
-        if (_window.Content is FrameworkElement root)
-        {
-            switch (selectedTheme)
-            {
-                case "Light":
-                    root.RequestedTheme = ElementTheme.Light;
-                    break;
-                case "Dark":
-                    root.RequestedTheme = ElementTheme.Dark;
-                    break;
-                case "Default":
-                    root.RequestedTheme = ElementTheme.Default;
-                    break;
-            }
-        }
-    }
     
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    protected async override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        _window = new MainWindow();
-        _window.Activate();
+        base.OnLaunched(args);
         
-        SetTheme(SettingsPage.GetUserTheme());
-
-        _appWindow = _window.AppWindow;
-        _appWindow.SetIcon("Assets/logo.ico");
+        await GetService<IActivationService>().ActivateAsync(args);
     }
 }

@@ -39,9 +39,9 @@ public class CompileUtils
     {
         var progressBar = new ConsoleProgressBar();
         return CompileDatabase(a000Path, output, option,
-            not => progressBar.SetTotal(not),
-            upt => progressBar.Update(),
-            () => progressBar.Dispose()
+            onInit: not => progressBar.SetTotal(not),
+            onUpdate: upt => progressBar.Update(),
+            onFinish: () => progressBar.Dispose()
         );
     }
 
@@ -49,6 +49,7 @@ public class CompileUtils
         string a000Path,
         string? output,
         CompileDatabaseOption option,
+        CancellationToken?  cancellationToken = null,
         Action<int>? onInit = null,
         Action<int>? onUpdate = null,
         Action? onFinish = null)
@@ -122,6 +123,10 @@ public class CompileUtils
 
                             Compiler(folderToCompile, outputLocation, originSoundLocation, originImageLocation, option);
                             if (onUpdate != null) onUpdate(musicFloderDict.Sum(x => x.Value ? 1 : 0));
+                            if (cancellationToken != null)
+                            {
+                                if (cancellationToken.Value.IsCancellationRequested) break;
+                            }
                         }
                     });
                     thread.Start();

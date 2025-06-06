@@ -1,29 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Window
+<?xml version="1.0" encoding="utf-8" ?>
+<windowex:WindowEx
+    Title="MaiChart2SimaiChart"
+    mc:Ignorable="d"
     x:Class="MaiChart2SimaiChart.Gui.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MaiChart2SimaiChart.Gui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:MaiChart2SimaiChart.Gui"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Title="MaiChart2SimaiChart">
+    xmlns:windowex="using:WinUIEx"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
-
-    <Grid>
-        <NavigationView 
-            x:Name="nv" 
-            Header=""
-            SelectionChanged="Nv_OnSelectionChanged"
-            Loaded="Nv_OnLoaded"
-            PaneTitle="MaiChart2SimaiChart">
-            <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Play" x:Uid="Nav_ExportPage" Tag="Ex" />
-            </NavigationView.MenuItems>
-            <Frame x:Name="contentFrame"/>
-        </NavigationView>
-    </Grid>
-</Window>
+</windowex:WindowEx>

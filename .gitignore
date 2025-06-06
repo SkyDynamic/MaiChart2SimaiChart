@@ -12,3 +12,4 @@ riderModule.iml
 BundleArtifacts
 *.user
 *.tmp
+*.pfx
