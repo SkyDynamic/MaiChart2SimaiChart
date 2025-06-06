@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExportPage.Text" xml:space="preserve">
-    <value>Export  Charts</value>
+    <value>匯出譜面</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
+    <value>遞交</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
   </data>
   <data name="SettingsPage.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>設定</value>
   </data>
   <data name="SettingsPageAppearance.Text" xml:space="preserve">
     <value>Appearance &amp; behavior</value>
@@ -142,7 +142,7 @@
     <value>Input the path</value>
   </data>
   <data name="ExportPage_ChooseFolder.Content" xml:space="preserve">
-    <value>Choose Folder</value>
+    <value>選取資料夾</value>
   </data>
   <data name="ExportPage_Output.Header" xml:space="preserve">
     <value>Output Path</value>
