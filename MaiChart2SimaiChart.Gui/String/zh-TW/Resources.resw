@@ -196,7 +196,7 @@
     <value>Check your arguments again: </value>
   </data>
   <data name="ExportPage_Theme.Header" xml:space="preserve">
-    <value>App Theme</value>
+    <value>應用程式主題</value>
   </data>
   <data name="ExportPage_Theme.Description" xml:space="preserve">
     <value>Select witch app theme to display</value>
