@@ -239,7 +239,7 @@ public class CompileUtils
         }
         else
         {
-            compiler = new SimaiCompiler(option.StrictDecimal, Path.Combine(track), trackPath);
+            compiler = new SimaiCompiler(option.StrictDecimal, Path.Combine(track) + "/", trackPath);
             compiler.WriteOut(trackPath, true);
             StaticSettings.CompiledChart.Add(compiler.GenerateOneLineSummary());
         }

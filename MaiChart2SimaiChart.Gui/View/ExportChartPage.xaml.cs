@@ -96,7 +96,7 @@ public sealed partial class ExportChartPage : Page
                             $"Strict Decimal: {ViewModel.StrictDecimal}\n" +
                             $"NumberIDFolderName: {ViewModel.Number}\n" +
                             $"Categorize Method: {_trackCategorizeMethodSet[ViewModel.TrackCategorizeMethodComboBoxIndex]}\n" +
-                            $"Thread Count: {ViewModel.ThreadComboBoxIndex}";
+                            $"Thread Count: {ViewModel.ThreadComboBoxIndex + 1}";
 
         var result = await DialogHelper.ConfirmDialog(
             dialogTitle, 
@@ -126,7 +126,7 @@ public sealed partial class ExportChartPage : Page
                     ViewModel.StrictDecimal,
                     ViewModel.Number,
                     TrackCategorizeMethodComboBox.SelectedIndex,
-                    (int)ThreadsNumberComboBox.SelectedItem
+                    ThreadsNumberComboBox.SelectedIndex + 1
                 );
                 
                 ViewModel.TokenSource = new CancellationTokenSource();
