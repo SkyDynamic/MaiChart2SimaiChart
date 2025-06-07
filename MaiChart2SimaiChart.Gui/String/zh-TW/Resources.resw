@@ -136,7 +136,7 @@
     <value>輸入路徑</value>
   </data>
   <data name="ExportPage_ChooseFolder.Content" xml:space="preserve">
-    <value>選擇資料夾</value>
+    <value>選取資料夾</value>
   </data>
   <data name="ExportPage_Output.Header" xml:space="preserve">
     <value>輸出路徑</value>
@@ -172,7 +172,7 @@
     <value>點我匯出！</value>
   </data>
   <data name="ExportPage_A0PathNullNotifyText" xml:space="preserve">
-    <value>請選擇一個有效路徑。</value>
+    <value>請選取一個有效路徑。</value>
   </data>
   <data name="ExportPage_ExportFinishNotify" xml:space="preserve">
     <value>匯出已完成</value>
