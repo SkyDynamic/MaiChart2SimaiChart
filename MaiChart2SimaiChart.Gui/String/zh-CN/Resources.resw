@@ -201,4 +201,10 @@
   <data name="Nav_ExportPage.Content" xml:space="preserve">
     <value>导出谱面文件</value>
   </data>
+  <data name="ExportPage_ConvertVideo.Header" xml:space="preserve">
+    <value>开启后将会导出谱面PV</value>
+  </data>
+  <data name="ExportPage_ConvertVideo.Description" xml:space="preserve">
+    <value>导出背景视频</value>
+  </data>
 </root>
