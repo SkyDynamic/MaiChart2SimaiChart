@@ -25,6 +25,8 @@ public static class StaticSettings
     public static Dictionary<int, string> CompiledTracks = [];
     public static List<string> CompiledChart = [];
     
+    public static Dictionary<int, string> MovieDataMap { get; set; } = new();
+    
     public static string CompensateZero(string intake)
     {
         try
@@ -55,6 +57,16 @@ public static class StaticSettings
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+        }
+    }
+
+    public static void ScenMovieData(string path)
+    {
+        MovieDataMap.Clear();
+        foreach (var dat in Directory.EnumerateFiles(path))
+        {
+            if (!int.TryParse(Path.GetFileNameWithoutExtension(dat), out var id)) continue;
+            MovieDataMap[id] = dat;
         }
     }
 }

@@ -7,6 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Libs\wannacri-wrapper.exe" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Libs\wannacri-wrapper.exe">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+    
+    <ItemGroup>
       <ProjectReference Include="..\MaiLib\MaiLib.csproj" />
       <ProjectReference Include="..\XV2-Tools\Xv2CoreLib\Xv2CoreLib.csproj" />
     </ItemGroup>
@@ -16,6 +26,7 @@
       <PackageReference Include="NAudio.Lame" Version="2.1.0" />
       <PackageReference Include="NAudio.Vorbis" Version="1.5.0" />
       <PackageReference Include="Standart.Hash.xxHash" Version="4.0.5" />
+      <PackageReference Include="Xabe.FFmpeg" Version="6.0.1" />
       <PackageReference Include="YAXLib" Version="2.15.0" />
     </ItemGroup>
 
@@ -38,10 +49,6 @@
         <None Update="x86\Texture2DDecoderNative.dll">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Libs\" />
     </ItemGroup>
 
 </Project>

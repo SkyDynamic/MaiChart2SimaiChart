@@ -12,11 +12,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ScrollViewer
-            Grid.Row="1"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto"
             ZoomMode="Disabled">
@@ -61,7 +59,11 @@
                         x:Uid="ExportPage_ChooseFolder" />
                 </Grid>
 
-                <controls:SettingsCard HeaderIcon="{ui:FontIcon Glyph=&#xE799;}" x:Uid="ExportPage_StrictDecimal">
+                <controls:SettingsCard HeaderIcon="{ui:FontIcon Glyph=&#xE714;}" x:Uid="ExportPage_ConvertVideo">
+                    <ToggleSwitch IsOn="{x:Bind ViewModel.ConvertVideo, Mode=TwoWay}" />
+                </controls:SettingsCard>
+
+                <controls:SettingsCard HeaderIcon="{ui:FontIcon Glyph=&#xF154;}" x:Uid="ExportPage_StrictDecimal">
                     <ToggleSwitch IsOn="{x:Bind ViewModel.StrictDecimal, Mode=TwoWay}" />
                 </controls:SettingsCard>
 

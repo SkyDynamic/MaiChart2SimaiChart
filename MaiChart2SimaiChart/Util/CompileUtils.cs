@@ -1,4 +1,6 @@
 ﻿using MaiLib;
+using Microsoft.VisualBasic.FileIO;
+using Xabe.FFmpeg;
 
 namespace MaiChart2SimaiChart.Util;
 
@@ -11,18 +13,21 @@ public class CompileUtils
 
     public class CompileDatabaseOption
     {
+        public bool ConvertVideo { get; set; }
         public bool StrictDecimal { get; set; }
         public bool MusicIdFolderName { get; set; }
         public int CategorizeIndex { get; set; }
         public int ThreadCount { get; set; }
 
         public CompileDatabaseOption(
+            bool convertVideo,
             bool strictDecimal,
             bool musicIdFolderName,
             int categorizeIndex,
             int threadCount
         )
         {
+            ConvertVideo = convertVideo;
             StrictDecimal = strictDecimal;
             MusicIdFolderName = musicIdFolderName;
             CategorizeIndex = categorizeIndex;
@@ -30,22 +35,22 @@ public class CompileUtils
         }
     }
     
-    public static int CompileDatabaseWithNothing(string a000Path, string? output)
+    public static async Task<int> CompileDatabaseWithNothing(string a000Path, string? output)
     {
-        return CompileDatabase(a000Path, output, new CompileDatabaseOption(false, false, 0, 1));
+        return await CompileDatabase(a000Path, output, new CompileDatabaseOption(false, false, false, 0, 1));
     }
 
-    public static int CompileDatabaseWithProgressBar(string a000Path, string? output, CompileDatabaseOption option)
+    public static async Task<int> CompileDatabaseWithProgressBar(string a000Path, string? output, CompileDatabaseOption option)
     {
         var progressBar = new ConsoleProgressBar();
-        return CompileDatabase(a000Path, output, option,
+        return await CompileDatabase(a000Path, output, option,
             onInit: not => progressBar.SetTotal(not),
             onUpdate: upt => progressBar.Update(),
             onFinish: () => progressBar.Dispose()
         );
     }
 
-    public static int CompileDatabase(
+    public static async Task<int> CompileDatabase(
         string a000Path,
         string? output,
         CompileDatabaseOption option,
@@ -66,6 +71,9 @@ public class CompileUtils
         var originSoundLocation = Path.Combine(a000Path, "SoundData");
         var originImageLocation = Path.Combine(a000Path, "AssetBundleImages", "jacket");
         var originVideoLocation = Path.Combine(a000Path, "MovieData");
+        
+        Console.WriteLine("Scanning movie data...");
+        StaticSettings.ScenMovieData(originVideoLocation);
 
         var musicFolders = Directory.GetDirectories(musicLocation);
 
@@ -165,7 +173,7 @@ public class CompileUtils
         }
     }
 
-    private static void Compiler(
+    private static async void Compiler(
         string track,
         string outputLocation,
         string originSoundLocation,
@@ -273,5 +281,34 @@ public class CompileUtils
 
         if (img is not null)
             File.WriteAllBytes(Path.Combine(trackPath, "bg.png"), img);
+
+        if (option.ConvertVideo && StaticSettings.MovieDataMap.TryGetValue(int.Parse(trackInfo.TrackID), out var movieUsmPath))
+        {
+            string? pvMp4Path = null;
+            if (Path.GetExtension(movieUsmPath).Equals(".dat", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var tmpDir = Directory.CreateTempSubdirectory();
+                var movieUsm = Path.Combine(tmpDir.FullName, "movie.usm");
+                FileSystem.CopyFile(movieUsmPath, movieUsm, UIOption.OnlyErrorDialogs);
+                
+                VideoUtil.UnpackUsm(movieUsm, Path.Combine(tmpDir.FullName, "output")).WaitForExit();
+                var outputIvfFile = Directory.EnumerateFiles(Path.Combine(tmpDir.FullName, @"output\movie.usm\videos")).FirstOrDefault();
+                if (outputIvfFile is not null)
+                {
+                    pvMp4Path = Path.Combine(tmpDir.FullName, "pv.mp4");
+                    await FFmpeg.Conversions.New()
+                        .AddParameter("-i " + outputIvfFile.Escape())
+                        .AddParameter("-c:v copy")
+                        .SetOutput(pvMp4Path)
+                        .Start();
+                }
+
+                if (pvMp4Path is not null)
+                {
+                    File.Copy(pvMp4Path, Path.Combine(trackPath, "pv.mp4"), true);
+                }
+                tmpDir.Delete(true);
+            }
+        }
     }
 }

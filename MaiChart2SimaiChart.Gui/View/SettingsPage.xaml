@@ -16,18 +16,16 @@
             TargetType="TextBlock"
             x:Key="SettingsSectionHeaderTextBlockStyle">
             <Style.Setters>
-                <Setter Property="Margin" Value="1,30,0,6" />
+                <Setter Property="Margin" Value="1,0,0,6" />
             </Style.Setters>
         </Style>
     </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ScrollViewer
-            Grid.Row="1"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto"
             ZoomMode="Disabled">

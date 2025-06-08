@@ -10,6 +10,8 @@ public partial class ExportChartViewModel : ObservableObject
     private string _a000Path = "";
 
     private string _outputPath = "";
+    
+    private bool _convertVideo = false;
 
     private bool _strictDecimal = false;
 
@@ -44,6 +46,16 @@ public partial class ExportChartViewModel : ObservableObject
         set
         {
             _outputPath = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public bool ConvertVideo
+    {
+        get => _convertVideo;
+        set
+        {
+            _convertVideo = value;
             OnPropertyChanged();
         }
     }

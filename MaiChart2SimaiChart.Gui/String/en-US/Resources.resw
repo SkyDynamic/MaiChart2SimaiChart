@@ -201,4 +201,10 @@
   <data name="Nav_ExportPage.Content" xml:space="preserve">
     <value>Export Charts</value>
   </data>
+  <data name="ExportPage_ConvertVideo.Header" xml:space="preserve">
+    <value>Convert the track video with chart</value>
+  </data>
+  <data name="ExportPage_ConvertVideo.Description" xml:space="preserve">
+    <value>Convert with pv</value>
+  </data>
 </root>

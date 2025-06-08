@@ -123,6 +123,7 @@ public sealed partial class ExportChartPage : Page
                 
                 ExportProgressPanel.Visibility = Visibility.Visible;
                 var option = new CompileUtils.CompileDatabaseOption(
+                    ViewModel.ConvertVideo,
                     ViewModel.StrictDecimal,
                     ViewModel.Number,
                     TrackCategorizeMethodComboBox.SelectedIndex,
@@ -132,9 +133,9 @@ public sealed partial class ExportChartPage : Page
                 ViewModel.TokenSource = new CancellationTokenSource();
                 ViewModel.CancellationToken = ViewModel.TokenSource.Token;
                 
-                ViewModel.ExportThread = Task.Run(() =>
+                ViewModel.ExportThread = Task.Run(async () =>
                 {
-                    CompileUtils.CompileDatabase(
+                    await CompileUtils.CompileDatabase(
                         ViewModel.A000Path,
                         ViewModel.OutputPath,
                         option,

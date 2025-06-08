@@ -66,4 +66,9 @@
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <PackageCertificateThumbprint>140264F63E4FE35A9A784B982FF85C94879622E0</PackageCertificateThumbprint>
   </PropertyGroup>
+  <ItemGroup>
+    <PRIResource Update="String\zh-CN\Resources.resw">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </PRIResource>
+  </ItemGroup>
 </Project>

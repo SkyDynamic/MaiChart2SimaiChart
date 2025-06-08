@@ -7,14 +7,15 @@ namespace MaiChart2SimaiChartCli.Commands;
 public class CompileDatabase : ConsoleCommand
 {
     public const int Success = 0;
-    public const int Failed = 2;
-    public bool StrictDecimal { get; set; }
-    public bool MusicIdFolderName { get; set; }
-    public string? A000Location { get; set; }
-    public int CategorizeIndex { get; set; }
-    public string? Destination { get; set; }
-    public string CategorizeMethods { get; set; }
-    public int ThreadCount { get; set; }
+    private const int Failed = 2;
+    private bool ConvertVideo { get; set; }
+    private bool StrictDecimal { get; set; }
+    private bool MusicIdFolderName { get; set; }
+    private string? A000Location { get; set; }
+    private int CategorizeIndex { get; set; }
+    private string? Destination { get; set; }
+    private string CategorizeMethods { get; set; }
+    private int ThreadCount { get; set; }
 
     public CompileDatabase()
     {
@@ -36,6 +37,7 @@ public class CompileDatabase : ConsoleCommand
             genre => CategorizeIndex = int.Parse(genre));
         HasOption("d|decimal:", "Force output chart to have levels rated by decimal", _ => StrictDecimal = true);
         HasOption("n|number:", "Use musicID as folder name instead of sort name", _ => MusicIdFolderName = true);
+        HasOption("v|video:", "Convert with pv", _ => ConvertVideo = true);
         HasOption("t|thread=", "Number of threads to use for compiling, default is 1", threadCount =>
         {
             if (int.TryParse(threadCount, out var count) && count > 0)
@@ -49,16 +51,20 @@ public class CompileDatabase : ConsoleCommand
     {
         try
         {
-            string a000Location =
+            var a000Location =
                 A000Location ?? throw new FileNotFoundException("A000 location was not specified");
 
             var option = new CompileUtils.CompileDatabaseOption(
+                ConvertVideo,
                 StrictDecimal, 
                 MusicIdFolderName,
                 CategorizeIndex, 
                 ThreadCount);
-            
-            return CompileUtils.CompileDatabaseWithProgressBar(a000Location, Destination, option);
+
+            return Task.Run(async () =>
+                await CompileUtils.CompileDatabaseWithProgressBar(a000Location, Destination, option))
+                .GetAwaiter()
+                .GetResult();
         }
         catch (Exception ex)
         {
