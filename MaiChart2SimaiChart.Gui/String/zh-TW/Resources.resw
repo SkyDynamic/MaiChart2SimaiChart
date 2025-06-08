@@ -190,10 +190,10 @@
     <value>再次檢查你的參數：</value>
   </data>
   <data name="Settings_Theme.Header" xml:space="preserve">
-    <value>App Theme</value>
+    <value>應用主題</value>
   </data>
   <data name="Settings_Theme.Description" xml:space="preserve">
-    <value>Select witch app theme to display</value>
+    <value>選擇要顯示的應用主題</value>
   </data>
   <data name="ExportPage_StopButton.Content" xml:space="preserve">
     <value>停止匯出</value>
@@ -202,9 +202,9 @@
     <value>匯出譜面文件</value>
   </data>
   <data name="ExportPage_ConvertVideo.Header" xml:space="preserve">
-    <value>Convert the track video with chart</value>
+    <value>開啟後將會匯出譜面PV</value>
   </data>
   <data name="ExportPage_ConvertVideo.Description" xml:space="preserve">
-    <value>Convert with pv</value>
+    <value>匯出背景視頻</value>
   </data>
 </root>
