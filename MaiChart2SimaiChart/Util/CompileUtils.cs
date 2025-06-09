@@ -268,7 +268,7 @@ public class CompileUtils
 
         AudioConvert.ConvertWavPathToMp3Stream(
             wavPath,
-            new FileStream(Path.Combine(trackPath, "music.mp3"), FileMode.Create));
+            new FileStream(Path.Combine(trackPath, "track.mp3"), FileMode.Create));
 
         Console.WriteLine($"Convert jacket {trackInfo.TrackName}");
         byte[]? img;
